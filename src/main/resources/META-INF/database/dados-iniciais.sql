@@ -1,0 +1,1 @@
+INSERT INTO produtos (nome, descricao, preco) VALUES ('Kindle', 'Conheça o novo kindle', 499.90);

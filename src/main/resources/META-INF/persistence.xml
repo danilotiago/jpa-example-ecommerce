@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+	version="2.2">
+
+	<!-- Define uma unidade de conexão onde eu agrupo configurações de uma conexão 
+		específica -->
+	<persistence-unit
+		name="app-ecommerce-mysql-connection">
+
+		<!-- Define os parametros da conexao -->
+		<properties>
+
+			<!-- Define a url do banco e outras meta informações -->
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://localhost/app_ecommerce?createDatabaseIfNotExist=true&amp;useTimezone=true&amp;serverTimezone=UTC" />
+
+			<!-- Define o usuário do banco -->
+			<property name="javax.persistence.jdbc.user" value="root" />
+
+			<!-- Define a senha do banco -->
+			<property name="javax.persistence.jdbc.password"
+				value="123456" />
+
+			<!-- Define o driver do banco -->
+			<property name="javax.persistence.jdbc.driver"
+				value="com.mysql.cj.jdbc.Driver" />
+
+			<!-- Define a acao que o JPA fara ao iniciar a aplicacao; neste caso, 
+				dropa e recria (APENAS LOCAL) -->
+			<property
+				name="javax.persistence.schema-generation.database.action"
+				value="drop-and-create" />
+
+			<!-- Define um script de carga inicial do banco, onde apontamos o local 
+				do script (APENAS LOCAL) -->
+			<property name="javax.persistence.sql-load-script-source"
+				value="META-INF/database/dados-iniciais.sql" />
+
+			<!-- Define o dialeto que o JPA deve usar para gerar o SQL -->
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.MySQL8Dialect" />
+
+			<!-- Define que queremos que o SQL gerado seja impresso no console (APENAS 
+				LOCAL) -->
+			<property name="hibernate.show_sql" value="true" />
+
+			<!-- Define que queremos que o SQL quando impresso no console seja formatado 
+				para uma melhor visibilidade (APENAS LOCAL) -->
+			<property name="hibernate.format_sql" value="true" />
+
+		</properties>
+	</persistence-unit>
+</persistence>
