@@ -6,34 +6,47 @@ import javax.persistence.Persistence;
 
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Test;
+
+import app.projetaria.appcommerce.entity.Produto;
 
 public class ConsultandoRegistrosTest {
 
-	private String persistenceUnit = "app-ecommerce-mysql-connection";
-	private EntityManagerFactory entityManagerFactory;
-	private EntityManager entityManager;
+	private static String persistenceUnit = "app-ecommerce-mysql-connection";
+	private static EntityManagerFactory entityManagerFactory;
+	private static EntityManager entityManager;
 
 	@BeforeClass
-	public void initOnInstance() {
-		this.entityManagerFactory = Persistence.createEntityManagerFactory(this.persistenceUnit);
+	public static void initOnInstance() {
+		entityManagerFactory = Persistence.createEntityManagerFactory(persistenceUnit);
 	}
 
 	@AfterClass
-	public void destroyOnInstance() {
-		this.entityManagerFactory.close();
+	public static void destroyOnInstance() {
+		entityManagerFactory.close();
 	}
 
 	@Before
 	public void initOnMethod() {
-		this.entityManager = this.entityManagerFactory.createEntityManager();
+		entityManager = entityManagerFactory.createEntityManager();
 	}
 
 	@After
 	public void destroyOnMethod() {
-		this.entityManager.close();
+		entityManager.close();
 	}
 	
-	
+	@Test
+	public void buscarPorIdTest() {
+		//lazy => getReference
+		//Produto produto = entityManager.getReference(Produto.class, 1);
+		
+		Produto produto = entityManager.find(Produto.class, 1);
+		
+		Assert.assertNotNull(produto);
+		Assert.assertEquals("Kindle", produto.getNome());
+	}
 }

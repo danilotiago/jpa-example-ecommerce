@@ -1,1 +1,1 @@
-INSERT INTO produtos (nome, descricao, preco) VALUES ('Kindle', 'Conheça o novo kindle', 499.90);
+INSERT INTO produtos (id, nome, descricao, preco) VALUES (1, 'Kindle', 'Conheça o novo kindle', 499.90);
