@@ -2,6 +2,8 @@ package app.projetaria.appcommerce.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +22,8 @@ public class PagamentoCartao {
 	@Column(name = "pedido_id")
 	private Integer pedidoId;
 
+	// pega efetivamente a String do Enum e grava no banco
+	@Enumerated(EnumType.STRING)
 	private StatusPagamento status;
 
 	private String numero;

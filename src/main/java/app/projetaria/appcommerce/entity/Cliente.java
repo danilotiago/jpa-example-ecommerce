@@ -1,6 +1,8 @@
 package app.projetaria.appcommerce.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +20,8 @@ public class Cliente {
 
 	private String nome;
 
+	// pega efetivamente a String do Enum e grava no banco
+	@Enumerated(EnumType.STRING)
 	private SexoCliente sexo;
 
 	public Integer getId() {

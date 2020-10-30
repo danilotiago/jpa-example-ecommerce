@@ -8,6 +8,7 @@ import org.junit.Test;
 import app.projetaria.appcommerce.EntityManagerTest;
 import app.projetaria.appcommerce.entity.Cliente;
 import app.projetaria.appcommerce.entity.Produto;
+import app.projetaria.appcommerce.enums.SexoCliente;
 
 public class CriandoRegistrosTest extends EntityManagerTest {
 
@@ -39,6 +40,7 @@ public class CriandoRegistrosTest extends EntityManagerTest {
 		Cliente cliente = new Cliente();
 		
 		cliente.setNome("Marcela Oliveira");
+		cliente.setSexo(SexoCliente.FEMININO);
 
 		entityManager.getTransaction().begin();
 

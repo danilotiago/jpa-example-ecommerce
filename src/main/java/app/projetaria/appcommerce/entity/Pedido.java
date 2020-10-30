@@ -2,6 +2,8 @@ package app.projetaria.appcommerce.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,6 +32,8 @@ public class Pedido {
 
 	private Double total;
 
+	// pega efetivamente a String do Enum e grava no banco
+	@Enumerated(EnumType.STRING)
 	private StatusPedido status;
 
 	public Integer getId() {
