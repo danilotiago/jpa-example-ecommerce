@@ -6,19 +6,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import app.projetaria.appcommerce.enums.SexoCliente;
-
 @Entity
-@Table(name = "clientes")
-public class Cliente {
+@Table(name = "estoque")
+public class Estoque {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	private String nome;
+	private String produtoId;
 
-	private SexoCliente sexo;
+	private Integer quantidade;
 
 	public Integer getId() {
 		return id;
@@ -28,20 +26,20 @@ public class Cliente {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getProdutoId() {
+		return produtoId;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setProdutoId(String produtoId) {
+		this.produtoId = produtoId;
 	}
 
-	public SexoCliente getSexo() {
-		return sexo;
+	public Integer getQuantidade() {
+		return quantidade;
 	}
 
-	public void setSexo(SexoCliente sexo) {
-		this.sexo = sexo;
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	@Override
@@ -60,7 +58,7 @@ public class Cliente {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
+		Estoque other = (Estoque) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -71,6 +69,6 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", sexo=" + sexo + "]";
+		return "Estoque [id=" + id + ", produtoId=" + produtoId + ", quantidade=" + quantidade + "]";
 	}
 }

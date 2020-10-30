@@ -6,19 +6,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import app.projetaria.appcommerce.enums.SexoCliente;
-
 @Entity
-@Table(name = "clientes")
-public class Cliente {
-
+@Table(name = "categorias")
+public class Categoria {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
+	
 	private String nome;
-
-	private SexoCliente sexo;
+	
+	private Integer categoriaPaiId;
 
 	public Integer getId() {
 		return id;
@@ -36,12 +34,12 @@ public class Cliente {
 		this.nome = nome;
 	}
 
-	public SexoCliente getSexo() {
-		return sexo;
+	public Integer getCategoriaPaiId() {
+		return categoriaPaiId;
 	}
 
-	public void setSexo(SexoCliente sexo) {
-		this.sexo = sexo;
+	public void setCategoriaPaiId(Integer categoriaPaiId) {
+		this.categoriaPaiId = categoriaPaiId;
 	}
 
 	@Override
@@ -60,7 +58,7 @@ public class Cliente {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
+		Categoria other = (Categoria) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -71,6 +69,6 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", sexo=" + sexo + "]";
+		return "Categoria [id=" + id + ", nome=" + nome + ", categoriaPaiId=" + categoriaPaiId + "]";
 	}
 }

@@ -1,24 +1,26 @@
 package app.projetaria.appcommerce.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import app.projetaria.appcommerce.enums.SexoCliente;
-
 @Entity
-@Table(name = "clientes")
-public class Cliente {
+@Table(name = "notas_fiscais")
+public class NotaFiscal {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	private String nome;
+	private Integer pedidoId;
 
-	private SexoCliente sexo;
+	private String xml;
+
+	private Date dataEmissao;
 
 	public Integer getId() {
 		return id;
@@ -28,20 +30,28 @@ public class Cliente {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public Integer getPedidoId() {
+		return pedidoId;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setPedidoId(Integer pedidoId) {
+		this.pedidoId = pedidoId;
 	}
 
-	public SexoCliente getSexo() {
-		return sexo;
+	public String getXml() {
+		return xml;
 	}
 
-	public void setSexo(SexoCliente sexo) {
-		this.sexo = sexo;
+	public void setXml(String xml) {
+		this.xml = xml;
+	}
+
+	public Date getDataEmissao() {
+		return dataEmissao;
+	}
+
+	public void setDataEmissao(Date dataEmissao) {
+		this.dataEmissao = dataEmissao;
 	}
 
 	@Override
@@ -60,7 +70,7 @@ public class Cliente {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
+		NotaFiscal other = (NotaFiscal) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -71,6 +81,7 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", sexo=" + sexo + "]";
+		return "NotaFiscal [id=" + id + ", pedidoId=" + pedidoId + ", xml=" + xml + ", dataEmissao=" + dataEmissao
+				+ "]";
 	}
 }

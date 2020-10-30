@@ -6,19 +6,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import app.projetaria.appcommerce.enums.SexoCliente;
-
 @Entity
-@Table(name = "clientes")
-public class Cliente {
+@Table(name = "itens_pedido")
+public class ItemPedido {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	private String nome;
+	private Integer pedidoId;
 
-	private SexoCliente sexo;
+	private Integer produtoId;
+
+	private Double precoProduto;
+
+	private Integer quantidade;
 
 	public Integer getId() {
 		return id;
@@ -28,20 +30,36 @@ public class Cliente {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public Integer getPedidoId() {
+		return pedidoId;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setPedidoId(Integer pedidoId) {
+		this.pedidoId = pedidoId;
 	}
 
-	public SexoCliente getSexo() {
-		return sexo;
+	public Integer getProdutoId() {
+		return produtoId;
 	}
 
-	public void setSexo(SexoCliente sexo) {
-		this.sexo = sexo;
+	public void setProdutoId(Integer produtoId) {
+		this.produtoId = produtoId;
+	}
+
+	public Double getPrecoProduto() {
+		return precoProduto;
+	}
+
+	public void setPrecoProduto(Double precoProduto) {
+		this.precoProduto = precoProduto;
+	}
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	@Override
@@ -60,7 +78,7 @@ public class Cliente {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
+		ItemPedido other = (ItemPedido) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -71,6 +89,8 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", sexo=" + sexo + "]";
+		return "ItemPedido [id=" + id + ", pedidoId=" + pedidoId + ", produtoId=" + produtoId + ", precoProduto="
+				+ precoProduto + ", quantidade=" + quantidade + "]";
 	}
+
 }
