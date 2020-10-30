@@ -1,5 +1,6 @@
 package app.projetaria.appcommerce.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,17 +8,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "itens_pedido")
+@Table(name = "itens_pedidos")
 public class ItemPedido {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Column(name = "pedido_id")
 	private Integer pedidoId;
 
+	@Column(name = "produto_id")
 	private Integer produtoId;
 
+	@Column(name = "preco_produto")
 	private Double precoProduto;
 
 	private Integer quantidade;

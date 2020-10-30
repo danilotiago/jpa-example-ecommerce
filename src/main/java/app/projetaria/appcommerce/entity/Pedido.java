@@ -1,5 +1,6 @@
 package app.projetaria.appcommerce.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,10 +19,13 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Column(name = "data_pedido")
 	private LocalDateTimeType dataPedido;
 
+	@Column(name = "data_conclusao")
 	private LocalDateTimeType dataConclusao;
 
+	@Column(name = "nota_fical_id")
 	private Integer notaFiscalId;
 
 	private Double total;

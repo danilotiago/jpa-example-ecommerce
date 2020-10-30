@@ -1,5 +1,6 @@
 package app.projetaria.appcommerce.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,10 +17,12 @@ public class PagamentoBoleto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Column(name = "pedido_id")
 	private Integer pedidoId;
 
 	private StatusPagamento status;
 
+	@Column(name = "codigo_barras")
 	private String codigoBarras;
 
 	public Integer getId() {

@@ -1,5 +1,6 @@
 package app.projetaria.appcommerce.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +17,7 @@ public class Categoria {
 	
 	private String nome;
 	
+	@Column(name = "categoria_pai_id")
 	private Integer categoriaPaiId;
 
 	public Integer getId() {

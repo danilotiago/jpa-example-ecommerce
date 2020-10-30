@@ -1,5 +1,6 @@
 package app.projetaria.appcommerce.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,7 @@ public class Estoque {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Column(name = "produto_id")
 	private String produtoId;
 
 	private Integer quantidade;
