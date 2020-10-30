@@ -16,7 +16,7 @@ public class ClonandoRegistrosTest extends EntityManagerTest {
 		// removendo o objeto do entitymanager
 		entityManager.detach(produto);
 		
-		produto.setId(2);
+		produto.setId(null);
 		
 		entityManager.getTransaction().begin();
 		
