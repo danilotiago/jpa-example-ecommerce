@@ -3,3 +3,6 @@ INSERT INTO produtos (id, nome, descricao, preco) VALUES (2, 'Bicicleta Caloi', 
 
 INSERT INTO clientes (id, nome) VALUES (1, 'Danilo Tiago');
 INSERT INTO clientes (id, nome) VALUES (2, 'Thai Santos');
+
+-- INSERT INTO pedidos (id, data_pedido, data_conclusao, nota_fical_id, total, cep, logradouro, numero, complemento, bairro, cidade, estado) 
+--	VALUES (1, '2020-10-01 17:42:20', NULL, NULL, 2700.00, '08257-065', 'Rua Oito', '100', NULL, 'Imar', 'João Paulo', 'São Paulo');

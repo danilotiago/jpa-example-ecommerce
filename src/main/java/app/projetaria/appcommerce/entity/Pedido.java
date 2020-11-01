@@ -1,6 +1,9 @@
 package app.projetaria.appcommerce.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -8,8 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.type.LocalDateTimeType;
 
 import app.projetaria.appcommerce.enums.StatusPedido;
 
@@ -22,15 +23,18 @@ public class Pedido {
 	private Integer id;
 
 	@Column(name = "data_pedido")
-	private LocalDateTimeType dataPedido;
+	private LocalDateTime dataPedido;
 
 	@Column(name = "data_conclusao")
-	private LocalDateTimeType dataConclusao;
+	private LocalDateTime dataConclusao;
 
 	@Column(name = "nota_fical_id")
 	private Integer notaFiscalId;
 
 	private Double total;
+	
+	@Embedded
+	private Endereco enderecoEntrega;
 
 	// pega efetivamente a String do Enum e grava no banco
 	@Enumerated(EnumType.STRING)
@@ -44,19 +48,19 @@ public class Pedido {
 		this.id = id;
 	}
 
-	public LocalDateTimeType getDataPedido() {
+	public LocalDateTime getDataPedido() {
 		return dataPedido;
 	}
 
-	public void setDataPedido(LocalDateTimeType dataPedido) {
+	public void setDataPedido(LocalDateTime dataPedido) {
 		this.dataPedido = dataPedido;
 	}
 
-	public LocalDateTimeType getDataConclusao() {
+	public LocalDateTime getDataConclusao() {
 		return dataConclusao;
 	}
 
-	public void setDataConclusao(LocalDateTimeType dataConclusao) {
+	public void setDataConclusao(LocalDateTime dataConclusao) {
 		this.dataConclusao = dataConclusao;
 	}
 
@@ -82,6 +86,14 @@ public class Pedido {
 
 	public void setStatus(StatusPedido status) {
 		this.status = status;
+	}
+
+	public Endereco getEnderecoEntrega() {
+		return enderecoEntrega;
+	}
+
+	public void setEnderecoEntrega(Endereco enderecoEntrega) {
+		this.enderecoEntrega = enderecoEntrega;
 	}
 
 	@Override
@@ -112,7 +124,8 @@ public class Pedido {
 	@Override
 	public String toString() {
 		return "Pedido [id=" + id + ", dataPedido=" + dataPedido + ", dataConclusao=" + dataConclusao
-				+ ", notaFiscalId=" + notaFiscalId + ", total=" + total + ", status=" + status + "]";
+				+ ", notaFiscalId=" + notaFiscalId + ", total=" + total + ", enderecoEntrega=" + enderecoEntrega
+				+ ", status=" + status + "]";
 	}
 
 }
