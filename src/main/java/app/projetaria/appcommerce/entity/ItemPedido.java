@@ -17,9 +17,6 @@ public class ItemPedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "pedido_id")
-	private Integer pedidoId;
-
 	@Column(name = "produto_id")
 	private Integer produtoId;
 
@@ -27,7 +24,7 @@ public class ItemPedido {
 	private Double precoProduto;
 
 	private Integer quantidade;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "pedido_id")
 	private Pedido pedido;
@@ -38,14 +35,6 @@ public class ItemPedido {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getPedidoId() {
-		return pedidoId;
-	}
-
-	public void setPedidoId(Integer pedidoId) {
-		this.pedidoId = pedidoId;
 	}
 
 	public Integer getProdutoId() {
@@ -107,8 +96,8 @@ public class ItemPedido {
 
 	@Override
 	public String toString() {
-		return "ItemPedido [id=" + id + ", pedidoId=" + pedidoId + ", produtoId=" + produtoId + ", precoProduto="
-				+ precoProduto + ", quantidade=" + quantidade + ", pedido=" + pedido + "]";
+		return "ItemPedido [id=" + id + ", produtoId=" + produtoId + ", precoProduto=" + precoProduto + ", quantidade="
+				+ quantidade + ", pedido=" + pedido + "]";
 	}
 
 }
