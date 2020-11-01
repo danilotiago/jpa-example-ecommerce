@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +27,10 @@ public class ItemPedido {
 	private Double precoProduto;
 
 	private Integer quantidade;
+	
+	@ManyToOne
+	@JoinColumn(name = "pedido_id")
+	private Pedido pedido;
 
 	public Integer getId() {
 		return id;
@@ -66,6 +72,14 @@ public class ItemPedido {
 		this.quantidade = quantidade;
 	}
 
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -94,7 +108,7 @@ public class ItemPedido {
 	@Override
 	public String toString() {
 		return "ItemPedido [id=" + id + ", pedidoId=" + pedidoId + ", produtoId=" + produtoId + ", precoProduto="
-				+ precoProduto + ", quantidade=" + quantidade + "]";
+				+ precoProduto + ", quantidade=" + quantidade + ", pedido=" + pedido + "]";
 	}
 
 }

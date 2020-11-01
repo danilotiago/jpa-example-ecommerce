@@ -1,11 +1,14 @@
 package app.projetaria.appcommerce.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import app.projetaria.appcommerce.enums.SexoCliente;
@@ -23,6 +26,9 @@ public class Cliente {
 	// pega efetivamente a String do Enum e grava no banco
 	@Enumerated(EnumType.STRING)
 	private SexoCliente sexo;
+	
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos;
 
 	public Integer getId() {
 		return id;

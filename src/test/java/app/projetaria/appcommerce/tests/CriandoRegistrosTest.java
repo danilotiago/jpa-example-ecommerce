@@ -65,6 +65,7 @@ public class CriandoRegistrosTest extends EntityManagerTest {
 	@Test
 	public void criarPedidoTest() {
 		
+		Cliente cliente = entityManager.find(Cliente.class, 1);
 		Endereco endereco = new Endereco();
 		Pedido pedido = new Pedido();
 		
@@ -80,6 +81,8 @@ public class CriandoRegistrosTest extends EntityManagerTest {
 		pedido.setDataPedido(LocalDateTime.now());
 		pedido.setStatus(StatusPedido.AGUARDANDO);
 		pedido.setTotal(1000.00);
+		
+		pedido.setCliente(cliente);
 		
 		entityManager.getTransaction().begin();
 		entityManager.persist(pedido);

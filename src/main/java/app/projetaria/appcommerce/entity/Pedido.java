@@ -1,6 +1,7 @@
 package app.projetaria.appcommerce.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -10,6 +11,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import app.projetaria.appcommerce.enums.StatusPedido;
@@ -35,6 +39,13 @@ public class Pedido {
 	
 	@Embedded
 	private Endereco enderecoEntrega;
+	
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
+	private Cliente cliente;
+	
+	@OneToMany(mappedBy = "pedido")
+	private List<ItemPedido> itens;
 
 	// pega efetivamente a String do Enum e grava no banco
 	@Enumerated(EnumType.STRING)
@@ -96,6 +107,22 @@ public class Pedido {
 		this.enderecoEntrega = enderecoEntrega;
 	}
 
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public List<ItemPedido> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<ItemPedido> itens) {
+		this.itens = itens;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -125,7 +152,7 @@ public class Pedido {
 	public String toString() {
 		return "Pedido [id=" + id + ", dataPedido=" + dataPedido + ", dataConclusao=" + dataConclusao
 				+ ", notaFiscalId=" + notaFiscalId + ", total=" + total + ", enderecoEntrega=" + enderecoEntrega
-				+ ", status=" + status + "]";
+				+ ", cliente=" + cliente + ", status=" + status + "]";
 	}
 
 }
