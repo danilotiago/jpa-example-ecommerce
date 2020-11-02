@@ -1,6 +1,5 @@
 package app.projetaria.appcommerce.tests;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.junit.Assert;
@@ -9,6 +8,7 @@ import org.junit.Test;
 import app.projetaria.appcommerce.EntityManagerTest;
 import app.projetaria.appcommerce.entity.Cliente;
 import app.projetaria.appcommerce.entity.Endereco;
+import app.projetaria.appcommerce.entity.ItemPedido;
 import app.projetaria.appcommerce.entity.Pedido;
 import app.projetaria.appcommerce.entity.Produto;
 import app.projetaria.appcommerce.enums.SexoCliente;
@@ -21,7 +21,7 @@ public class CriandoRegistrosTest extends EntityManagerTest {
 		Produto produto = new Produto();
 		produto.setNome("Drone V6");
 		produto.setDescricao("Voa até 1KM");
-		produto.setPreco(new BigDecimal(5000));
+		produto.setPreco(5000.00);
 
 		entityManager.getTransaction().begin();
 
@@ -95,5 +95,29 @@ public class CriandoRegistrosTest extends EntityManagerTest {
 		Assert.assertNotNull(pedidoCadastrado);
 		Assert.assertEquals(pedido.getTotal(), pedidoCadastrado.getTotal());
 		
+	}
+	
+	@Test
+	public void criarItemPedidoTest() {
+		
+		Pedido pedido = entityManager.find(Pedido.class, 1);
+		
+		ItemPedido item = new ItemPedido();
+		item.setProdutoId(1);
+		item.setQuantidade(2);
+		item.setPrecoProduto(799.00);
+		
+		item.setPedido(pedido);
+		
+		entityManager.getTransaction().begin();
+		entityManager.persist(item);
+		entityManager.getTransaction().commit();
+		
+		entityManager.clear();
+		
+		ItemPedido itemCadastrado = entityManager.find(ItemPedido.class, 2);
+		
+		Assert.assertNotNull(itemCadastrado);
+		Assert.assertEquals(item.getPrecoProduto(), itemCadastrado.getPrecoProduto());
 	}
 }

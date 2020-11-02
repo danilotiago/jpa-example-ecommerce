@@ -43,13 +43,13 @@ public class Pedido {
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
-	
-	@OneToMany(mappedBy = "pedido")
-	private List<ItemPedido> itens;
 
 	// pega efetivamente a String do Enum e grava no banco
 	@Enumerated(EnumType.STRING)
 	private StatusPedido status;
+	
+	@OneToMany(mappedBy = "pedido")
+	private List<ItemPedido> itens;
 
 	public Integer getId() {
 		return id;
