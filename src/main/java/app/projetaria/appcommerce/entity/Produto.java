@@ -1,22 +1,33 @@
 package app.projetaria.appcommerce.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity(name = "produtos")
 public class Produto {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String nome;
-	
+
 	private String descricao;
-	
+
 	private Double preco;
+
+	@ManyToMany
+	@JoinTable(name = "produto_categoria", 
+		joinColumns = @JoinColumn(name = "produto_id"), 
+		inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+	private List<Categoria> categorias;
 
 	public Integer getId() {
 		return id;
@@ -48,6 +59,14 @@ public class Produto {
 
 	public void setPreco(Double preco) {
 		this.preco = preco;
+	}
+
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 
 	@Override
