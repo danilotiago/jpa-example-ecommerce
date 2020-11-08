@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import app.projetaria.appcommerce.EntityManagerTest;
+import app.projetaria.appcommerce.entity.Categoria;
 import app.projetaria.appcommerce.entity.Cliente;
 import app.projetaria.appcommerce.entity.Endereco;
 import app.projetaria.appcommerce.entity.ItemPedido;
@@ -120,5 +121,41 @@ public class CriandoRegistrosTest extends EntityManagerTest {
 
 		Assert.assertNotNull(itemCadastrado);
 		Assert.assertEquals(item.getPrecoProduto(), itemCadastrado.getPrecoProduto());
+	}
+	
+	@Test
+	public void criarCategoriaRaizTest() {
+		Categoria categoriaRaiz = new Categoria();
+		categoriaRaiz.setNome("Escritório");
+		
+		entityManager.getTransaction().begin();
+		entityManager.persist(categoriaRaiz);
+		entityManager.getTransaction().commit();
+		
+		entityManager.clear();
+		
+		Categoria categoriaCadastrada = entityManager.find(Categoria.class, 4);
+		
+		Assert.assertEquals(categoriaRaiz.getNome(), categoriaCadastrada.getNome());
+	}
+	
+	@Test
+	public void criarCategoriaFilhaTest() {
+		Categoria categoriaRaiz = entityManager.find(Categoria.class, 1);
+		
+		Categoria categoriaFilha = new Categoria();
+		categoriaFilha.setNome("Eletrônicos de quarto");
+		categoriaFilha.setCategoriaRaiz(categoriaRaiz);
+		
+		entityManager.getTransaction().begin();
+		entityManager.persist(categoriaFilha);
+		entityManager.getTransaction().commit();
+		
+		entityManager.clear();
+		
+		Categoria categoriaCadastrada = entityManager.find(Categoria.class, 4);
+		
+		Assert.assertEquals(categoriaFilha.getNome(), categoriaCadastrada.getNome());
+		Assert.assertEquals(categoriaFilha.getCategoriaRaiz().getNome(), categoriaRaiz.getNome());
 	}
 }

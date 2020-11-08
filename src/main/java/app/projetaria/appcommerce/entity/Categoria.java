@@ -1,24 +1,32 @@
 package app.projetaria.appcommerce.entity;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "categorias")
 public class Categoria {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String nome;
-	
-	@Column(name = "categoria_pai_id")
-	private Integer categoriaPaiId;
+
+	@ManyToOne
+	@JoinColumn(name = "categoria_raiz")
+	private Categoria categoriaRaiz;
+
+	@OneToMany(mappedBy = "categoriaRaiz")
+	private List<Categoria> categoriasFilha;
 
 	public Integer getId() {
 		return id;
@@ -36,12 +44,20 @@ public class Categoria {
 		this.nome = nome;
 	}
 
-	public Integer getCategoriaPaiId() {
-		return categoriaPaiId;
+	public Categoria getCategoriaRaiz() {
+		return categoriaRaiz;
 	}
 
-	public void setCategoriaPaiId(Integer categoriaPaiId) {
-		this.categoriaPaiId = categoriaPaiId;
+	public void setCategoriaRaiz(Categoria categoriaRaiz) {
+		this.categoriaRaiz = categoriaRaiz;
+	}
+
+	public List<Categoria> getCategoriasFilha() {
+		return categoriasFilha;
+	}
+
+	public void setCategoriasFilha(List<Categoria> categoriasFilha) {
+		this.categoriasFilha = categoriasFilha;
 	}
 
 	@Override
@@ -71,6 +87,8 @@ public class Categoria {
 
 	@Override
 	public String toString() {
-		return "Categoria [id=" + id + ", nome=" + nome + ", categoriaPaiId=" + categoriaPaiId + "]";
+		return "Categoria [id=" + id + ", nome=" + nome + ", categoriaRaiz=" + categoriaRaiz + ", categoriasFilha="
+				+ categoriasFilha + "]";
 	}
+
 }
