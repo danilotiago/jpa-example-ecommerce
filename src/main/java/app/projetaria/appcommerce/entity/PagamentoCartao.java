@@ -1,12 +1,13 @@
 package app.projetaria.appcommerce.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import app.projetaria.appcommerce.enums.StatusPagamento;
@@ -19,8 +20,9 @@ public class PagamentoCartao {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "pedido_id")
-	private Integer pedidoId;
+	@OneToOne
+	@JoinColumn(name = "pedido_id")
+	private Pedido pedido;
 
 	// pega efetivamente a String do Enum e grava no banco
 	@Enumerated(EnumType.STRING)
@@ -36,12 +38,12 @@ public class PagamentoCartao {
 		this.id = id;
 	}
 
-	public Integer getPedidoId() {
-		return pedidoId;
+	public Pedido getPedido() {
+		return pedido;
 	}
 
-	public void setPedidoId(Integer pedidoId) {
-		this.pedidoId = pedidoId;
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
 
 	public StatusPagamento getStatus() {
@@ -87,8 +89,7 @@ public class PagamentoCartao {
 
 	@Override
 	public String toString() {
-		return "PagamentoCartao [id=" + id + ", pedidoId=" + pedidoId + ", status=" + status + ", numero=" + numero
-				+ "]";
+		return "PagamentoCartao [id=" + id + ", pedido=" + pedido + ", status=" + status + ", numero=" + numero + "]";
 	}
 
 }

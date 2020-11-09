@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import app.projetaria.appcommerce.enums.StatusPedido;
@@ -50,6 +51,9 @@ public class Pedido {
 	
 	@OneToMany(mappedBy = "pedido")
 	private List<ItemPedido> itens;
+	
+	@OneToOne(mappedBy = "pedido")
+	private PagamentoCartao pagamentoCartao;
 
 	public Integer getId() {
 		return id;
@@ -121,6 +125,14 @@ public class Pedido {
 
 	public void setItens(List<ItemPedido> itens) {
 		this.itens = itens;
+	}
+
+	public PagamentoCartao getPagamentoCartao() {
+		return pagamentoCartao;
+	}
+
+	public void setPagamentoCartao(PagamentoCartao pagamentoCartao) {
+		this.pagamentoCartao = pagamentoCartao;
 	}
 
 	@Override
